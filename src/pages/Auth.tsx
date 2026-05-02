@@ -35,11 +35,12 @@ const Auth = () => {
       return;
     }
     setLoading(true);
+    const creds = { email: result.data.email, password: result.data.password };
     const { error } =
       mode === "signin"
-        ? await supabase.auth.signInWithPassword(result.data)
+        ? await supabase.auth.signInWithPassword(creds)
         : await supabase.auth.signUp({
-            ...result.data,
+            ...creds,
             options: { emailRedirectTo: `${window.location.origin}/` },
           });
     setLoading(false);

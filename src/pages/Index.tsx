@@ -117,13 +117,15 @@ const Index = () => {
             <span className="text-muted-foreground">$</span> whoami
           </div>
           <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight">
-            computer<br />
-            <span className="text-primary terminal-glow">engineer</span>
+            your name<br />
+            <span className="text-primary terminal-glow">computer engineer</span>
             <span className="blink-caret"></span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-            building things at the intersection of hardware and software.
-            <br />
+            i build things at the intersection of hardware and software — from
+            embedded firmware to full-stack web systems. currently exploring
+            distributed systems, low-level optimization, and developer tooling.
+            <br /><br />
             below: a live feed of projects i'm shipping.
           </p>
           <div className="flex gap-2 pt-2 font-mono text-xs text-muted-foreground">
@@ -131,6 +133,33 @@ const Index = () => {
             <span className="px-2 py-1 border border-border rounded-sm">systems</span>
             <span className="px-2 py-1 border border-border rounded-sm">full-stack</span>
           </div>
+          <div className="flex flex-wrap items-center gap-3 pt-4 font-mono text-xs">
+            <span className="text-muted-foreground">$ contact --list</span>
+            <a href="mailto:you@example.com" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
+              <Mail className="h-3.5 w-3.5" /> email
+            </a>
+            <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
+              <Github className="h-3.5 w-3.5" /> github
+            </a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
+              <Linkedin className="h-3.5 w-3.5" /> linkedin
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="container pb-12">
+        <div className="border-b border-border pb-3 mb-6">
+          <h2 className="font-mono text-sm text-primary">
+            <span className="text-muted-foreground">$ cat</span> ./about.md
+          </h2>
+        </div>
+        <div className="terminal-card rounded-md p-6 md:p-8 max-w-3xl space-y-4 font-mono text-sm leading-relaxed text-muted-foreground">
+          <p><span className="text-primary">&gt;</span> hi, i'm <span className="text-foreground">your name</span> — a computer engineer who likes turning ideas into working systems.</p>
+          <p><span className="text-primary">&gt;</span> my background spans firmware, operating systems, and modern web stacks. i care about clean architecture, fast feedback loops, and tools that respect the user.</p>
+          <p><span className="text-primary">&gt;</span> outside of code: tinkering with hardware, reading papers, and breaking things to learn how they work.</p>
+          <p className="text-xs"><span className="text-primary">$</span> status: open to interesting problems<span className="blink-caret"></span></p>
         </div>
       </section>
 

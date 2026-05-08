@@ -117,7 +117,7 @@ const Index = () => {
             <span className="text-muted-foreground">$</span> whoami
           </div>
           <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight">
-            your name<br />
+            Raniel Mark Deza<br />
             <span className="text-primary terminal-glow">computer engineer</span>
             <span className="blink-caret"></span>
           </h1>
@@ -156,7 +156,7 @@ const Index = () => {
           </h2>
         </div>
         <div className="terminal-card rounded-md p-6 md:p-8 max-w-3xl space-y-4 font-mono text-sm leading-relaxed text-muted-foreground">
-          <p><span className="text-primary">&gt;</span> hi, i'm <span className="text-foreground">your name</span> — a computer engineer who likes turning ideas into working systems.</p>
+          <p><span className="text-primary">&gt;</span> hi, i'm <span className="text-foreground">Raniel Mark Deza</span> — a computer engineer who likes turning ideas into working systems.</p>
           <p><span className="text-primary">&gt;</span> my background spans firmware, operating systems, and modern web stacks. i care about clean architecture, fast feedback loops, and tools that respect the user.</p>
           <p><span className="text-primary">&gt;</span> outside of code: tinkering with hardware, reading papers, and breaking things to learn how they work.</p>
           <p className="text-xs"><span className="text-primary">$</span> status: open to interesting problems<span className="blink-caret"></span></p>

@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Realtime Project Showcase
 
 TODO: Document your project here

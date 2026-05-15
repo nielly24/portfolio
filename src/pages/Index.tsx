@@ -141,7 +141,12 @@ const Index = () => {
             <a href="https://github.com/nielly24" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
               <Github className="h-3.5 w-3.5" /> github
             </a>
-            <a href="https://www.linkedin.com/in/deza-raniel-mark-m-80023740b/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
+            <a 
+              href="https://www.linkedin.com/in/deza-raniel-mark-m-80023740b" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors"
+            >
               <Linkedin className="h-3.5 w-3.5" /> linkedin
             </a>
           </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Terminal, LogIn, LogOut, Plus, Mail, Github } from "lucide-react";
+import { Terminal, LogIn, LogOut, Plus, Mail, Github, Linkedin } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Project } from "@/types/project";
 import { useAuth } from "@/hooks/useAuth";
@@ -141,12 +141,9 @@ const Index = () => {
             <a href="https://github.com/nielly24" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
               <Github className="h-3.5 w-3.5" /> github
             </a>
-<<<<<<< HEAD
             <a href="https://www.linkedin.com/in/deza-raniel-mark-m-80023740b/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
               <Linkedin className="h-3.5 w-3.5" /> linkedin
             </a>
-=======
->>>>>>> 53f4388c11bab8e2c07643090273a95a68eb3852
           </div>
         </div>
       </section>

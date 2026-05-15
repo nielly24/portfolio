@@ -135,14 +135,11 @@ const Index = () => {
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-4 font-mono text-xs">
             <span className="text-muted-foreground">$ contact --list</span>
-            <a href="mailto:you@example.com" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
+            <a href="mailto:raniel.deza2004@gmail.com" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
               <Mail className="h-3.5 w-3.5" /> email
             </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
+            <a href="https://github.com/nielly24" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
               <Github className="h-3.5 w-3.5" /> github
-            </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-border rounded-sm hover:border-primary hover:text-primary transition-colors">
-              <Linkedin className="h-3.5 w-3.5" /> linkedin
             </a>
           </div>
         </div>

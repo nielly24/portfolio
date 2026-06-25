@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { Project } from "@/types/project";
-import { supabase } from "@/integrations/supabase/client";
+import { collection, addDoc, doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,7 +52,9 @@ export const ProjectFormDialog = ({ open, onOpenChange, project }: Props) => {
       toast.error(result.error.issues[0].message);
       return;
     }
+    
     setSaving(true);
+    
     const payload = {
       title: result.data.title,
       description: result.data.description,
@@ -64,17 +67,27 @@ export const ProjectFormDialog = ({ open, onOpenChange, project }: Props) => {
       demo_url: result.data.demo_url || null,
     };
 
-    const { error } = project
-      ? await supabase.from("projects").update(payload).eq("id", project.id)
-      : await supabase.from("projects").insert(payload);
-
-    setSaving(false);
-    if (error) {
-      toast.error(error.message);
-      return;
+    try {
+      if (project) {
+        // Update existing project
+        await updateDoc(doc(db, "projects", project.id), payload);
+        toast.success("Project updated");
+      } else {
+        // Add new project
+        await addDoc(collection(db, "projects"), {
+          ...payload,
+          display_order: 0,
+          created_at: serverTimestamp()
+        });
+        toast.success("Project added");
+      }
+      onOpenChange(false);
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.message || "Failed to save project");
+    } finally {
+      setSaving(false);
     }
-    toast.success(project ? "Project updated" : "Project added");
-    onOpenChange(false);
   };
 
   return (

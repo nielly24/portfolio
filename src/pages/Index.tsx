@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Terminal, LogIn, LogOut, Plus, Mail, Github, Linkedin } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import { Project } from "@/types/project";
 import { useAuth } from "@/hooks/useAuth";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -29,41 +30,41 @@ const Index = () => {
 
   useEffect(() => {
     document.title = "computer engineer · portfolio";
-    fetchProjects();
 
-    const channel = supabase
-      .channel("projects-realtime")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "projects" },
-        () => fetchProjects()
-      )
-      .subscribe();
+    // Firestore query: get projects, order by display_order then created_at
+    const q = query(
+      collection(db, "projects"),
+      orderBy("display_order", "asc"),
+      orderBy("created_at", "desc")
+    );
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
-
-  const fetchProjects = async () => {
-    const { data, error } = await supabase
-      .from("projects")
-      .select("*")
-      .order("display_order", { ascending: true })
-      .order("created_at", { ascending: false });
-    if (error) {
+    // Real-time listener
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const projData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Project[];
+      
+      setProjects(projData);
+      setLoading(false);
+    }, (error) => {
+      console.error("Firestore error:", error);
       toast.error("Failed to load projects");
-    } else {
-      setProjects(data ?? []);
-    }
-    setLoading(false);
-  };
+      setLoading(false);
+    });
+
+    // Cleanup listener on unmount
+    return () => unsubscribe();
+  }, []);
 
   const handleDelete = async () => {
     if (!deleting) return;
-    const { error } = await supabase.from("projects").delete().eq("id", deleting.id);
-    if (error) toast.error(error.message);
-    else toast.success("Project removed");
+    try {
+      await deleteDoc(doc(db, "projects", deleting.id));
+      toast.success("Project removed");
+    } catch (error: any) {
+      toast.error(error.message);
+    }
     setDeleting(null);
   };
 

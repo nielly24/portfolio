@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,23 +36,22 @@ const Auth = () => {
       return;
     }
     setLoading(true);
-    const creds = { email: result.data.email, password: result.data.password };
-    const { error } =
-      mode === "signin"
-        ? await supabase.auth.signInWithPassword(creds)
-        : await supabase.auth.signUp({
-            ...creds,
-            options: { emailRedirectTo: `${window.location.origin}/` },
-          });
-    setLoading(false);
-    if (error) {
-      toast.error(error.message);
-      return;
+    
+    try {
+      if (mode === "signin") {
+        await signInWithEmailAndPassword(auth, result.data.email, result.data.password);
+        toast.success("logged in");
+      } else {
+        await createUserWithEmailAndPassword(auth, result.data.email, result.data.password);
+        toast.success("account created");
+      }
+      navigate("/", { replace: true });
+    } catch (error: any) {
+      toast.error(error.message || "An error occurred");
+    } finally {
+      setLoading(false);
     }
-    toast.success(mode === "signin" ? "logged in" : "account created");
-    navigate("/", { replace: true });
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">

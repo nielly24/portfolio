@@ -3,7 +3,7 @@ import { z } from "zod";
 import { Project } from "@/types/project";
 import { collection, addDoc, doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -98,6 +98,10 @@ export const ProjectFormDialog = ({ open, onOpenChange, project }: Props) => {
             <span className="text-primary">~/</span>
             {project ? "edit_project" : "new_project"}
           </DialogTitle>
+          {/* Added DialogDescription here to fix the accessibility warning! */}
+          <DialogDescription className="sr-only">
+            Fill out the form below to {project ? "edit this" : "add a new"} project to your portfolio.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-3">
           <div>
